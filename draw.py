@@ -7,19 +7,19 @@ from matrix import *
   # height and depth dimensions.
   # ====================
 def add_box( points, x, y, z, width, height, depth ):
-    //Upper left Front
+    #Upper left Front
     add_edge(points,x,y,z,x,y-height,z)
     add_edge(points,x,y,z,x+width,y,z)
     add_edge(points,x,y,z,x,y,z-depth)
-    //Upper right back
+    #Upper right back
     add_edge(points,x+width,y,z-depth,x,y,z-depth)
     add_edge(points,x+width,y,z-depth,x+width,y-height,z-depth)
     add_edge(points,x+width,y,z-depth,x+width,y,z)
-    //Lower right front
+    #Lower right front
     add_edge(points,x+width,y-height,z,x,y-height,z)
     add_edge(points,x+width,y-height,z,x+width,y,z)
     add_edge(points,x+width,y-height,z,x+width,y-height,z-depth)
-    //lower left back
+    #lower left back
     add_edge(points,x,y-height,z-depth,x+width,y-height,z-depth)
     add_edge(points,x,y-height,z-depth,x,y,z-depth)
     add_edge(points,x,y-height,z-depth,x,y-height,z)
@@ -32,7 +32,19 @@ def add_box( points, x, y, z, width, height, depth ):
   # Returns a matrix of those points
   # ====================
 def generate_sphere( points, cx, cy, cz, r, step ):
-    pass
+    ang1=0
+    ang2=0
+    step=2*math.pi/step
+    retL=[]
+    while ang2 <2*math.pi:
+        while ang1 < math.pi:
+            x=r*math.cos(ang1)+cx
+            y=r*math.sin(ang1)*math.cos(ang2)+cy
+            z=r*math.sin(ang1)*math.sin(ang2)+cz
+            retL.append([x,y,z])
+            ang1+=step
+        ang2+=step
+    return retL
 
   # ====================
   # adds all the points for a sphere with center
@@ -41,7 +53,9 @@ def generate_sphere( points, cx, cy, cz, r, step ):
   # necessary points
   # ====================
 def add_sphere( points, cx, cy, cz, r, step ):
-    pass
+    sphere=generate_sphere(points,cx,cy,cz,r,step)
+    for point in sphere:
+        add_edge(points,point[0],point[1],point[2],point[0],point[1],point[2])
 
 
   # ====================
