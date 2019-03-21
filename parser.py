@@ -82,9 +82,9 @@ def parse_file( fname, edges, transform, screen, color ):
         elif line == "box":
             add_box(edges,int(args[0]), int(args[1]),int(args[2]), int(args[3]),int(args[4]), int(args[5]))
         elif line == "sphere":
-            add_sphere(edges,int(args[0]), int(args[1]),int(args[2]), int(args[3]),300)
+            add_sphere(edges,int(args[0]), int(args[1]),int(args[2]), int(args[3]),100)
         elif line == "torus":
-            add_torus(edges,int(args[0]), int(args[1]),int(args[2]), int(args[3]),int(args[4]),300)
+            add_torus(edges,int(args[0]), int(args[1]),int(args[2]), int(args[3]),int(args[4]),100)
         elif line == 'line':
             #print 'LINE\t' + str(args)
 

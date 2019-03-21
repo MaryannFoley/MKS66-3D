@@ -32,19 +32,20 @@ def add_box( points, x, y, z, width, height, depth ):
   # Returns a matrix of those points
   # ====================
 def generate_sphere( points, cx, cy, cz, r, step ):
-    ang1=0
+
     ang2=0
     step=2*math.pi/step
     retL=[]
     while ang2 <math.pi:
+        ang1=0
         while ang1 <= 2*math.pi:
-            x=int(r*math.cos(ang1)+cx)
-            y=int(r*math.sin(ang1)*math.cos(ang2)+cy)
-            z=int(r*math.sin(ang1)*math.sin(ang2)+cz)
+            x=(r*math.cos(ang1)+cx)
+            y=(r*math.sin(ang1)*math.cos(ang2)+cy)
+            z=(r*math.sin(ang1)*math.sin(ang2)+cz)
             retL.append([x,y,z])
             ang1+=step
         ang2+=step
-    print(retL)
+    #print(retL)
     return retL
 
   # ====================
@@ -66,19 +67,20 @@ def add_sphere( points, cx, cy, cz, r, step ):
   # Returns a matrix of those points
   # ====================
 def generate_torus( points, cx, cy, cz, r0, r1, step ):
-    ang1=0
+
     ang2=0
     step=2*math.pi/step
     retL=[]
     while ang2 <=2*math.pi:
+        ang1=0
         while ang1 <= 2*math.pi:
-            x=int((r0*math.cos(ang1)+r1)*math.cos(ang2))
-            y=int(r0*math.sin(ang1))
-            z=int(math.sin(ang2)*((r0*math.cos(ang1)*-1)-r1))
+            x=(r0*math.cos(ang1)+r1)*math.cos(ang2)
+            y=(r0*math.sin(ang1))
+            z=(math.sin(ang2)*((r0*math.cos(ang1)*-1)-r1))
             retL.append([x,y,z])
             ang1+=step
         ang2+=step
-    print(retL)
+    #print(retL)
     return retL
 
   # ====================
