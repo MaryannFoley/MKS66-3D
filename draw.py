@@ -36,14 +36,15 @@ def generate_sphere( points, cx, cy, cz, r, step ):
     ang2=0
     step=2*math.pi/step
     retL=[]
-    while ang2 <2*math.pi:
-        while ang1 < math.pi:
-            x=r*math.cos(ang1)+cx
-            y=r*math.sin(ang1)*math.cos(ang2)+cy
-            z=r*math.sin(ang1)*math.sin(ang2)+cz
+    while ang2 <math.pi:
+        while ang1 <= 2*math.pi:
+            x=int(r*math.cos(ang1)+cx)
+            y=int(r*math.sin(ang1)*math.cos(ang2)+cy)
+            z=int(r*math.sin(ang1)*math.sin(ang2)+cz)
             retL.append([x,y,z])
             ang1+=step
         ang2+=step
+    print(retL)
     return retL
 
   # ====================
@@ -55,7 +56,7 @@ def generate_sphere( points, cx, cy, cz, r, step ):
 def add_sphere( points, cx, cy, cz, r, step ):
     sphere=generate_sphere(points,cx,cy,cz,r,step)
     for point in sphere:
-        add_edge(points,point[0],point[1],point[2],point[0],point[1],point[2])
+        add_edge(points,point[0],point[1],point[2],point[0]+1,point[1]+1,point[2]+1)
 
 
   # ====================
@@ -65,7 +66,20 @@ def add_sphere( points, cx, cy, cz, r, step ):
   # Returns a matrix of those points
   # ====================
 def generate_torus( points, cx, cy, cz, r0, r1, step ):
-    pass
+    ang1=0
+    ang2=0
+    step=2*math.pi/step
+    retL=[]
+    while ang2 <=2*math.pi:
+        while ang1 <= 2*math.pi:
+            x=int((r0*math.cos(ang1)+r1)*math.cos(ang2))
+            y=int(r0*math.sin(ang1))
+            z=int(math.sin(ang2)*((r0*math.cos(ang1)*-1)-r1))
+            retL.append([x,y,z])
+            ang1+=step
+        ang2+=step
+    print(retL)
+    return retL
 
   # ====================
   # adds all the points for a torus with center
@@ -74,7 +88,9 @@ def generate_torus( points, cx, cy, cz, r0, r1, step ):
   # necessary points
   # ====================
 def add_torus( points, cx, cy, cz, r0, r1, step ):
-    pass
+    t=generate_torus(points,cx,cy,cz,r0,r1,step)
+    for point in t:
+        add_edge(points,point[0],point[1],point[2],point[0]+1,point[1]+1,point[2]+1)
 
 
 
